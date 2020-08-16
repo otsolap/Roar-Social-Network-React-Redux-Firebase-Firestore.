@@ -50,78 +50,82 @@ class Register extends Component {
 
     render() {
         return (
-            <div className="row">
-                <form id="register" className="col s12" onSubmit={this.handleSubmit}>
-                    <div className="row">
-                        <div className="input field col s6">
-                            <input
-                                placeholder="First name"
-                                name='firstname'
-                                id="firstname"
-                                type="text"
-                                className="validate"
-                                value={this.state.firstname}
-                                onChange={this.handleInput}
-                            />
-                            <label htmlFor="firstname">First Name</label>
+            <div className="herobanner">
+                <h1> MAKE SOCIAL MEDIA GREAT AGAIN </h1>
+                <h4>Social Media is a disease. Meet the cure.</h4>
+                <div className="row">
+                    <form id="register" className="col s12" onSubmit={this.handleSubmit}>
+                        <div className="row">
+                            <div className="input field col s6">
+                                <input
+                                    placeholder="First name"
+                                    name='firstname'
+                                    id="firstname"
+                                    type="text"
+                                    className="validate"
+                                    value={this.state.firstname}
+                                    onChange={this.handleInput}
+                                />
+                                <label htmlFor="firstname">First Name</label>
+                            </div>
+                            <div className="input field col s6">
+                                <input
+                                    placeholder="Last name"
+                                    name='lastname'
+                                    id="lastname"
+                                    type="text"
+                                    className="validate"
+                                    value={this.state.lastname}
+                                    onChange={this.handleInput}
+                                />
+                                <label htmlFor="lastname">Last name</label>
+                            </div>
                         </div>
-                        <div className="input field col s6">
-                            <input
-                                placeholder="Last name"
-                                name='lastname'
-                                id="lastname"
-                                type="text"
-                                className="validate"
-                                value={this.state.lastname}
-                                onChange={this.handleInput}
-                            />
-                            <label htmlFor="lastname">Last name</label>
+                        <div className="row">
+                            <div className="input field col s6">
+                                <input
+                                    placeholder="Username"
+                                    id="username"
+                                    name='username'
+                                    type="text"
+                                    className="validate"
+                                    value={this.state.username}
+                                    onChange={this.handleInput}
+                                />
+                                <label htmlFor="username">Username</label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="input field col s6">
-                            <input
-                                placeholder="Username"
-                                id="username"
-                                name='username'
-                                type="text"
-                                className="validate"
-                                value={this.state.username}
-                                onChange={this.handleInput}
-                            />
-                            <label htmlFor="username">Username</label>
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input
+                                    id="password"
+                                    type="password"
+                                    name='password'
+                                    className="validate"
+                                    value={this.state.password}
+                                    onChange={this.handleInput}
+                                />
+                                <label htmlFor="password">Password</label>
+                            </div>
+                        </div >
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input
+                                    id="email"
+                                    type="email"
+                                    name='email'
+                                    className="validate"
+                                    value={this.state.email}
+                                    onChange={this.handleInput}
+                                />
+                                <label htmlFor="email">Email</label>
+                            </div>
                         </div>
-                    </div>
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input
-                                id="password"
-                                type="password"
-                                name='password'
-                                className="validate"
-                                value={this.state.password}
-                                onChange={this.handleInput}
-                            />
-                            <label htmlFor="password">Password</label>
-                        </div>
-                    </div >
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input
-                                id="email"
-                                type="email"
-                                name='email'
-                                className="validate"
-                                value={this.state.email}
-                                onChange={this.handleInput}
-                            />
-                            <label htmlFor="email">Email</label>
-                        </div>
-                    </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action">
-                        Register
+                        <button className="btn waves-effect waves-light" type="submit" name="action">
+                            Register
                                 </button>
-                </form >
+                    </form >
+                </div >
             </div >
         );
     }

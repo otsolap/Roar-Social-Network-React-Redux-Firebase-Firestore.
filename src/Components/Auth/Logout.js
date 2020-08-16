@@ -19,8 +19,8 @@ const Logout = () => {
     signOutPage()
 
     return (
-        <div>
-            You have been logged out!
+        <div className="herobanner">
+            You have left the Lion's den. Hopefully we will see you again soon!
         </div>
     )
 }

@@ -20,63 +20,67 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-        handleInput = (event) => {
-            this.setState({
-                // event target value on web-domainista revitti.
-                // debugger ftw.
-                [event.target.id]:event.target.value
-            })
-        }
+    handleInput = (event) => {
+        this.setState({
+            // event target value on web-domainista revitti.
+            // debugger ftw.
+            [event.target.id]: event.target.value
+        })
+    }
 
-        handleSubmit = (e) => {
-            e.preventDefault();
-            Firebase.auth().signInWithEmailAndPassword(
-                this.state.email,
-                this.state.password
-            ).then(() => {
-                console.log('login success');
-            }).catch(err => {
+    handleSubmit = (e) => {
+        e.preventDefault();
+        Firebase.auth().signInWithEmailAndPassword(
+            this.state.email,
+            this.state.password
+        ).then(() => {
+            console.log('login success');
+        }).catch(err => {
             console.log('loigin fail:' + err);
         });
     }
 
-        render() {
-            return (
+    render() {
+        return (
+            <div className="herobanner">
+                <h1> MAKE SOCIAL MEDIA GREAT AGAIN </h1>
+                <h4>Social Media is a disease. Meet the cure.</h4>
                 <div className="row">
-                      <div className="row">
-                            <div className="input-field col s12">
-                                <input 
-                                id="email" 
+                    <div className="row">
+                        <div className="input-field col s12">
+                            <input
+                                id="email"
                                 name="email"
                                 type="email"
-                                className="validate" 
+                                className="validate"
                                 value={this.state.email}
                                 onChange={this.handleInput}
-                                />
-                                <label htmlFor="email">Email</label>
-                            </div>
+                            />
+                            <label htmlFor="email">Email</label>
                         </div>
+                    </div>
                     <form id="login" className="col s12" onSubmit={this.handleSubmit}>
                         <div className="row">
                             <div className="input-field col s12">
-                                <input 
-                                id="password" 
-                                name="password"
-                                type="password" 
-                                className="validate" 
-                                value={this.state.password}
-                                onChange={this.handleInput}
+                                <input
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    className="validate"
+                                    value={this.state.password}
+                                    onChange={this.handleInput}
                                 />
                                 <label htmlFor="password">Password</label>
                             </div>
                         </div >
                         <button className="btn waves-effect waves-light" type="submit" name="action">
-                                Login
+                            Login
                                 </button>
                     </form >
                 </div >
-            );
-        }
+            </div >
+        );
+    }
 };
 
 export default Login;

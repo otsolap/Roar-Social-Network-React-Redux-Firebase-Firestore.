@@ -9,7 +9,7 @@ import UserLinks from './UserLinks'
 const NavBar = () => {
     return (
         <nav>
-            <div className="nav-wrapper">
+            <div className="nav-wrapper orange accent-4">
                 <Logo />
                 <ul className="right hide-on-med-and-down">
                     <NonRegLinks />
