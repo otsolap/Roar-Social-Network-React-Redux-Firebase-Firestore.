@@ -9,29 +9,26 @@ import Main from './Components/HomePage/Main';
 import NewPost from './Components/Posts/NewPost';
 import PostDetails from './Components/Posts/PostDetails';
 import Firebase from 'firebase';
-import { FIREBASE_CONFIG as firebaseConfig} from './config/FirebaseConfig';
- 
-  // Initialize Firebase
-  Firebase.initializeApp(firebaseConfig);
-  Firebase.analytics();
+import { FIREBASE_CONFIG as firebaseConfig } from './config/FirebaseConfig';
 
- const db = Firebase.firestore();
- db.collection('posts').get()
- // resp = response, doh.
-   .then(resp => {
-     console.log('resp is: ');
-     console.log(resp);
-     // response docs => documentit, eli meidän datat.
-     console.log('resp.docs is: ' + resp.docs);
-     // eli meidän kaikki data.
-     console.log(resp.docs);
-     // documentti numero 1 data.
-     console.log('resp.docs[0].data()');
-     console.log(resp.docs[0].data());
-   })
-   .catch(err => {
-     console.log(err);
-   });
+// Initialize Firebase
+Firebase.initializeApp(firebaseConfig);
+Firebase.analytics();
+
+const db = Firebase.firestore();
+
+
+// Hankkii meidän kaikki postit.
+db.collection('posts').get()
+  // resp = response, doh.
+  .then(resp => {
+    console.log(resp.docs[0].data());
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+
 
 function App() {
   return (
