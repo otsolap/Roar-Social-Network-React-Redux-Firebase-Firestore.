@@ -4,7 +4,7 @@ import React from 'react';
 const Notifications = () =>
     (
         <div>
-            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+            <a className='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
             <ul id='dropdown1' class='dropdown-content'>
                 <li><a href="#!">one</a></li>
                 <li><a href="#!">two</a></li>

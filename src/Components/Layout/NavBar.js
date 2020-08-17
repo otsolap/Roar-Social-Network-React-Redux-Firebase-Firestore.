@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Logo from './Logo';
 import NonRegLinks from './NonRegLinks'
 import UserLinks from './UserLinks'
 
-// MITÄ EROA ON NAVLINKILLÄM JA LINKILLÄ?
-// NAVLINK on hyödyllisimme propsien kautta, mutta navlink antaa lisäävaihtoehtoja.
+class NavBar extends Component {
 
-const NavBar = () => {
-    return (
-        <nav>
-            <div className="nav-wrapper orange accent-4">
-                <Logo />
-                <ul className="right hide-on-med-and-down">
-                    <NonRegLinks />
-                    <UserLinks />
-                </ul >
-            </div >
-        </nav >
-    )
+    render(){
+        return (
+            <nav>
+                <div className="nav-wrapper deep-orange accent-4">
+                    <Logo />
+                    {
+                        this.props.uid ? <ul className="right hide-on-med-and-down">
+                        <UserLinks />
+                        </ul > : <ul className="right hide-on-med-and-down">
+                        <NonRegLinks />
+                    </ul >
+                    }
+                </div >
+            </nav >
+        )
+    }
 }
+
 
 export default NavBar;

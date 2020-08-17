@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+// MITÄ EROA ON NAVLINKILLÄM JA LINKILLÄ?
+// NAVLINK on hyödyllisimme propsien kautta, mutta navlink antaa lisäävaihtoehtoja.
 const NonRegLinks = () =>
     (
         <ul id="nav-mobile" className="right hide-on-med-and-down">

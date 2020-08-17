@@ -35,6 +35,7 @@ class Login extends Component {
             this.state.password
         ).then(() => {
             console.log('login success');
+            this.props.history.push('/');
         }).catch(err => {
             console.log('loigin fail:' + err);
         });
@@ -78,6 +79,7 @@ class Login extends Component {
                                 </button>
                     </form >
                 </div >
+                <span>Don't have an account yet? <a href="/register">Register here! </a></span>
             </div >
         );
     }

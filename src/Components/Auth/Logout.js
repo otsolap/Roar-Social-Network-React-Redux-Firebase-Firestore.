@@ -1,28 +1,19 @@
-import React from 'react';
-import Firebase from 'firebase';
+import React, {Component} from 'react';
 
-export const signOut = () => {
-    Firebase.auth().signOut()
-        .then(() => {
-            console.log(`User has signed out succesfully`)
-        })
-}
 
-const Logout = () => {
-    const signOutPage = () => {
-        Firebase.auth().signOut()
-            .then(() => {
-                console.log(`User has signed out succesfully`)
-            })
-    }
-
-    signOutPage()
-
-    return (
-        <div className="herobanner">
-            You have left the Lion's den. Hopefully we will see you again soon!
-        </div>
+class Logout extends Component {
+    render(){
+        return (
+            <div className="herobanner">
+                {
+                    this.props.uid ?
+                    <p>Sorry something went wrong</p>
+                    :
+                    <p>You have left the Lion's den. Hopefully we will see you again soon!</p> 
+                }
+            </div>
     )
+}
 }
 
 export default Logout;

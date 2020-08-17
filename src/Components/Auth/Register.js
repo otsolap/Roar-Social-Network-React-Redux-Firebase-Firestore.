@@ -24,11 +24,22 @@ class Register extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        // const scope = this; korvaa this scopella.
         Firebase.auth().createUserWithEmailAndPassword(
             this.state.email,
             this.state.password
-        ).then(e => {
-            console.log(`user with email: ${this.state.email} created succesfully.`)
+        ).then(resp => {
+            Firebase.firestore().collection('users').doc(resp.user.uid).set({
+                firstname: this.state.firstname,
+                lastname: this.state.lastname,
+                username: this.state.username,
+                email: this.state.email,
+            }).then(() => {
+                console.log('User acccount created');
+                console.log(resp.user.uid)
+                this.props.history.push('/');
+            })
         }).catch(function (error) {
             // Handle Errors here.
             let errorCode = error.code;
@@ -51,7 +62,7 @@ class Register extends Component {
     render() {
         return (
             <div className="herobanner">
-                <h1> MAKE SOCIAL MEDIA GREAT AGAIN </h1>
+                <h1>MAKE SOCIAL MEDIA GREAT AGAIN</h1>
                 <h4>Social Media is a disease. Meet the cure.</h4>
                 <div className="row">
                     <form id="register" className="col s12" onSubmit={this.handleSubmit}>

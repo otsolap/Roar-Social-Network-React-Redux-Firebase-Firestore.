@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './Components/Layout/NavBar';
@@ -15,39 +15,62 @@ import { FIREBASE_CONFIG as firebaseConfig } from './config/FirebaseConfig';
 Firebase.initializeApp(firebaseConfig);
 Firebase.analytics();
 
-const db = Firebase.firestore();
+//const db = Firebase.firestore();
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    // tää on defaulttina null, koska sitten kun kävijä kirjautuu/rekisteröityy
+    // tai usertoken nähdään.... tää sää inputtia.
+    this.state = {
+      uid: Firebase.auth().currentUser
+    }
+  }
+  
+  render() {
+    // Firebase auth jos kävijöitä on kirjautunut
+    Firebase.auth().onAuthStateChanged(user => {
+      // varmistetaan että user on signed in.
+      if (user && this.state.uid === null) {
+        this.setState({
+          uid: user.uid
+        })
+        // kävijä kirjautuu ulos ja componenttit pitää palauttaa "non-reg user" tyyliin
+        // eli katsotaan onko KUKAAN kirjautunut sisään.
+      } else if (!user && this.state.uid !== null) {
+        this.setState({
+          uid: null
+        })
+      }
+    })
 
 
-// Hankkii meidän kaikki postit.
-db.collection('posts').get()
-  // resp = response, doh.
-  .then(resp => {
-    console.log(resp.docs[0].data());
-  })
-  .catch(err => {
-    console.log(err);
-  });
+    return (
+     
+        <Router>
+      <div className="App">
+          <NavBar> uid={this.state.uid}></NavBar>
+          <main>
+            <Switch>
+              <Route exact path="/" render={() => {
+                return <Main uid={this.state.uid} />
+              }} />
+              <Route path="/newpost" render={() => {
+                return <NewPost uid={this.state.uid} />
+              }} />
+              <Route path="/post:id" component={PostDetails} />
+              <Route path="/login" component={Login} />
+              <Route path="/logout" render={() => {
+                return <Logout uid={this.state.uid} />
+              }} />
+              <Route exact path="/register" component={Register} />
+            </Switch>
+          </main>
+          </div>
+        </Router>
+    );  
+  }
 
-
-
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <NavBar />
-        <main>
-          <Switch>
-            <Route exact path="/" component={Main} />
-            <Route path="/newpost" component={NewPost} />
-            <Route path="/post:id" component={PostDetails} />
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/register" component={Register} />
-          </Switch>
-        </main>
-      </Router>
-    </div>
-  );
 }
 
 export default App;
