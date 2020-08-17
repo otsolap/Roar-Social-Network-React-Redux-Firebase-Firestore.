@@ -1,6 +1,13 @@
+// PERUSS REACT-ETTIÄ
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
+// REACT-REDUX BABY.
+import { Provider, useSelector } from 'react-redux';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import { createFirestoreInstance } from 'redux-firestore';
+import rootReducer from './redux/reducers/rootReducer';
+// KOMPONENTIT
 import NavBar from './Components/Layout/NavBar';
 import Login from './Components/Auth/Login'
 import Logout from './Components/Auth/Logout'
@@ -8,14 +15,24 @@ import Register from './Components/Auth/Register'
 import Main from './Components/HomePage/Main';
 import NewPost from './Components/Posts/NewPost';
 import PostDetails from './Components/Posts/PostDetails';
-import Firebase from 'firebase';
-import { FIREBASE_CONFIG as firebaseConfig } from './config/FirebaseConfig';
+// FIREBASE
+import Firebase from 'firebase/app';
+import { FIREBASE_CONFIG as firebaseConfig, reduxFirebase_config as reduxFirebase } from './config/FirebaseConfig';
+import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/firestore'; // firestorea varten.
+import { isLoaded } from 'react-redux-firebase';
 
-// Initialize Firebase
+
+// Redux-store ja
+// // Initialize Firebase
+import { createStore } from 'redux'
+
+const store = createStore(rootReducer);
 Firebase.initializeApp(firebaseConfig);
+
 Firebase.analytics();
 
-//const db = Firebase.firestore();
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +43,7 @@ class App extends Component {
       uid: Firebase.auth().currentUser
     }
   }
-  
+
   render() {
     // Firebase auth jos kävijöitä on kirjautunut
     Firebase.auth().onAuthStateChanged(user => {
@@ -46,29 +63,32 @@ class App extends Component {
 
 
     return (
-     
-        <Router>
-      <div className="App">
-          <NavBar> uid={this.state.uid}></NavBar>
-          <main>
-            <Switch>
-              <Route exact path="/" render={() => {
-                return <Main uid={this.state.uid} />
-              }} />
-              <Route path="/newpost" render={() => {
-                return <NewPost uid={this.state.uid} />
-              }} />
-              <Route path="/post:id" component={PostDetails} />
-              <Route path="/login" component={Login} />
-              <Route path="/logout" render={() => {
-                return <Logout uid={this.state.uid} />
-              }} />
-              <Route exact path="/register" component={Register} />
-            </Switch>
-          </main>
-          </div>
-        </Router>
-    );  
+      <Provider store={store}>
+        <ReactReduxFirebaseProvider>
+          <Router>
+            <div className="App">
+              <NavBar uid={this.state.uid}></NavBar>
+              <main>
+                <Switch>
+                  <Route exact path="/" render={() => {
+                    return <Main uid={this.state.uid} />
+                  }} />
+                  <Route path="/newpost" render={() => {
+                    return <NewPost uid={this.state.uid} />
+                  }} />
+                  <Route path="/post:id" component={PostDetails} />
+                  <Route path="/login" component={Login} />
+                  <Route path="/logout" render={() => {
+                    return <Logout uid={this.state.uid} />
+                  }} />
+                  <Route exact path="/register" component={Register} />
+                </Switch>
+              </main>
+            </div>
+          </Router>
+        </ReactReduxFirebaseProvider>
+      </Provider >
+    );
   }
 
 }

@@ -3,6 +3,7 @@ import Firebase from 'firebase';
 
 
 class Login extends Component {
+
     // constructor luo uusia INSTANSSEJA loginnista, siksi käytämme thissiä.
     // THIS viittaa INSTANSSIIN, ei ITSE loginniin.
     // eli this muokkaa this.statea.... siksi siinä on se this.
@@ -20,6 +21,9 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+
+
+
     handleInput = (event) => {
         this.setState({
             // event target value on web-domainista revitti.
@@ -34,10 +38,10 @@ class Login extends Component {
             this.state.email,
             this.state.password
         ).then(() => {
+
             console.log('login success');
-            this.props.history.push('/');
         }).catch(err => {
-            console.log('loigin fail:' + err);
+            console.log('login fail:' + err);
         });
     }
 

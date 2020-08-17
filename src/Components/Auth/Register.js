@@ -3,6 +3,8 @@ import Firebase from 'firebase';
 
 
 class Register extends Component {
+    firestore = Firebase.firestore(); // Firestore!
+
     constructor(props) {
         super(props);
         this.state = {
@@ -24,8 +26,6 @@ class Register extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-
-        // const scope = this; korvaa this scopella.
         Firebase.auth().createUserWithEmailAndPassword(
             this.state.email,
             this.state.password
