@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { newPost} from '../../store/actions/postActions';
 import Firebase from 'firebase';
 
 class NewPost extends Component {
@@ -16,12 +18,20 @@ class NewPost extends Component {
     handleChange = event => {
         this.setState({
             // Voit laittaa tyhjät statet, koska nää tekee ne.
+            // mutta muistutuksena se on title ja message.
            [event.target.id]: event.target.value
         });
     }
 
 handleNewMessage = event => {
     event.preventDefault();
+    this.props.NewPost({
+        title: this.state.title,
+        message: this.state.message
+    })
+
+
+
 
     Firebase.firestore().collection('posts').add({
         title: this.state.title,
@@ -74,5 +84,21 @@ handleNewMessage = event => {
     }
 };
 
+// 
 
-export default NewPost;
+const mapStateToProps = (state) => {
+    return {
+
+    }
+}
+
+// emme ole vielä tehneet actionTypessiin mitään toimintoja.
+// niin teemme tähän Dispatch funktion, joka siis kertoo Propsille
+// mitä sen kuuuisi tehdä.
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createPost: post => dispatch(newPost(post))
+        }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost);

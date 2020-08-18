@@ -1,5 +1,3 @@
-import { NewPost } from '../actions/actionTypes'
-
 const currentTime = new Date();
 
 // tää on vaan muuntuja, johon objekteja tallenetaan.
@@ -16,6 +14,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
+        case 'NEW_POST_SUCCESFUL':
+                return state;
+        case 'NEW_POST_ERROR':
+            return state;
+
         default:
                 return state;
     }
