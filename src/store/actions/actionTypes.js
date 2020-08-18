@@ -1,0 +1,2 @@
+export const NEW_POST_SUCCESFUL = 'NEW_POST_SUCCESFUL';
+export const NEW_POST_ERROR = 'NEW_POST_ERROR';
