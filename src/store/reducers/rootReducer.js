@@ -18,7 +18,6 @@ const rootReducer = (state = initialState, action) => {
                 return state;
         case 'NEW_POST_ERROR':
             return state;
-
         default:
                 return state;
     }
