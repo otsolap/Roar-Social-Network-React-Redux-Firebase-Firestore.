@@ -2,11 +2,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
-// REACT-REDUX BABY.
-import { Provider, useSelector } from 'react-redux';
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
-import { createFirestoreInstance } from 'redux-firestore';
-import rootReducer from './redux/reducers/rootReducer';
 // KOMPONENTIT
 import NavBar from './Components/Layout/NavBar';
 import Login from './Components/Auth/Login'
@@ -16,23 +11,12 @@ import Main from './Components/HomePage/Main';
 import NewPost from './Components/Posts/NewPost';
 import PostDetails from './Components/Posts/PostDetails';
 // FIREBASE
-import Firebase from 'firebase/app';
+import Firebase from 'firebase';
 import { FIREBASE_CONFIG as firebaseConfig, reduxFirebase_config as reduxFirebase } from './config/FirebaseConfig';
-import 'firebase/auth';
-import 'firebase/database';
-import 'firebase/firestore'; // firestorea varten.
-import { isLoaded } from 'react-redux-firebase';
 
-
-// Redux-store ja
 // // Initialize Firebase
-import { createStore } from 'redux'
-
-const store = createStore(rootReducer);
 Firebase.initializeApp(firebaseConfig);
-
 Firebase.analytics();
-
 
 class App extends Component {
   constructor(props) {
@@ -63,8 +47,6 @@ class App extends Component {
 
 
     return (
-      <Provider store={store}>
-        <ReactReduxFirebaseProvider>
           <Router>
             <div className="App">
               <NavBar uid={this.state.uid}></NavBar>
@@ -86,8 +68,6 @@ class App extends Component {
               </main>
             </div>
           </Router>
-        </ReactReduxFirebaseProvider>
-      </Provider >
     );
   }
 

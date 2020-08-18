@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PostSummary from './PostSummary'
+import { connect } from 'react-redux';
 import Firebase from 'firebase';
 
 class AllPosts extends Component {
@@ -28,13 +29,25 @@ class AllPosts extends Component {
         return (
     <div>
         {
-            this.state.posts ?
-            this.state.posts.map(post => <PostSummary post={post.data()} key={x++}></PostSummary>):
+            // nää oli ekana state, mutta nyt reduxin myötä props.
+            this.props.posts ?
+            this.props.posts.map(post =>
+                 <PostSummary post={post.data()} key={x++}></PostSummary>
+                 )   :
             'Loading.....'
         }
     </div>
             )
         }
     }
+
+    const mapStateToProps = (state) => {
+        return {
+            // tämä on meidän this, props ja staten muokkaaja. :-D
+            posts: state.posts
+        }
+    }
     
-export default AllPosts;
+    // connect on se työkalu, joka yhdistää propsit/statet reduxin storeen.
+    // connect kysyy MIKÄ komponentti, joten täällä se on Allposts.
+export default connect(mapStateToProps)(AllPosts);
