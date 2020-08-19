@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Firebase from 'firebase';
 
@@ -9,19 +9,20 @@ class UserLinks extends Component {
         Firebase.auth().signOut()
             .then(() => {
                 console.log(`User has signed out succesfully`)
-            }).catch(err =>{
+            }).catch(err => {
                 console.log('some error has occured while logging out');
             });
     }
 
+
     render() {
         return (
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
-        <li><NavLink onClick={this.logOut} to="/logout" ><i className="small material-icons left">arrow_downward</i>Logout</NavLink></li>
-    </ul>
-    )
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <li><NavLink onClick={this.logOut} to="/logout" ><i className="small material-icons left">arrow_downward</i>Logout</NavLink></li>
+            </ul>
+        )
     }
-} 
+}
 
 
 export default UserLinks;

@@ -1,10 +1,10 @@
 import React from 'react'
 import AllPosts from '../Posts/AllPosts'
-import { Redirect } from 'react-router-dom';
 
-const Main = (props) => (
+
+const Main = () => (
     <div>
-    { props.uid ? <AllPosts/>: <Redirect to="/login" />}
+        <AllPosts />
     </div>
 )
 

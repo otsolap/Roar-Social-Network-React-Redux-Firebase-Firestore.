@@ -69,7 +69,7 @@ class Register extends Component {
                         <div className="row">
                             <div className="input field col s6">
                                 <input
-                                    placeholder="First name"
+                                    placeholder="Firstname"
                                     name='firstname'
                                     id="firstname"
                                     type="text"
@@ -81,7 +81,7 @@ class Register extends Component {
                             </div>
                             <div className="input field col s6">
                                 <input
-                                    placeholder="Last name"
+                                    placeholder="Lastname"
                                     name='lastname'
                                     id="lastname"
                                     type="text"
@@ -109,6 +109,7 @@ class Register extends Component {
                         <div className="row">
                             <div className="input-field col s12">
                                 <input
+                                    placeholder="Password"
                                     id="password"
                                     type="password"
                                     name='password'
@@ -122,6 +123,7 @@ class Register extends Component {
                         <div className="row">
                             <div className="input-field col s12">
                                 <input
+                                    placeholder="Email"
                                     id="email"
                                     type="email"
                                     name='email'

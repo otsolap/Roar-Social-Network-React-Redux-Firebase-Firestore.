@@ -21,9 +21,6 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-
-
-
     handleInput = (event) => {
         this.setState({
             // event target value on web-domainista revitti.

@@ -3,16 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 // REACT-REDUX BABY.
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 // import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 // import { createFirestoreInstance } from 'redux-firestore';
 import rootReducer from './store/reducers/rootReducer';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
 
-const store = createStore(rootReducer);
+function configureStore() {
+    const store = createStore(
+        rootReducer,
+        compose(
+            applyMiddleware(thunk),
+            window.devToolsExtension ? window.devToolsExtension() : f => f
+        )
+    );
+    return store;
+}
+
+const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-<App />
+        <App />
     </Provider >,
- document.getElementById('root'));
+    document.getElementById('root'));
