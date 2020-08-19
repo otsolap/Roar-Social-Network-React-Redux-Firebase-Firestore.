@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PostSummary from './PostSummary'
+import { removeAllPosts} from '../../store/actions/postActions'
 import { connect } from 'react-redux';
 import Firebase from 'firebase';
 
@@ -28,6 +29,7 @@ class AllPosts extends Component {
 
         return (
     <div>
+        <button className="btn" onClick={this.props.removeAllPosts}>Remove all posts.</button>
         {
             // nää oli ekana state, mutta nyt reduxin myötä props.
             this.props.posts ?
@@ -47,7 +49,13 @@ class AllPosts extends Component {
             posts: state.posts
         }
     }
+
+    const mapDispatchToProps = (dispatch) => {
+        return {
+            removeAllPosts: posts => dispatch(removeAllPosts(posts))
+            }
+    }
     
     // connect on se työkalu, joka yhdistää propsit/statet reduxin storeen.
     // connect kysyy MIKÄ komponentti, joten täällä se on Allposts.
-export default connect(mapStateToProps)(AllPosts);
+export default connect(mapStateToProps, mapDispatchToProps)(AllPosts);

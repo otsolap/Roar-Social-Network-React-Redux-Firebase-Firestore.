@@ -84,21 +84,19 @@ handleNewMessage = event => {
     }
 };
 
-// 
 
-const mapStateToProps = (state) => {
-    return {
 
-    }
-}
-
-// emme ole vielä tehneet actionTypessiin mitään toimintoja.
-// niin teemme tähän Dispatch funktion, joka siis kertoo Propsille
-// mitä sen kuuuisi tehdä.
+// 1 miten actionit dispatchataan.
+// 2 payload on post: post - sitä käytetään luomaan uusi state.
+// 3 dispatch funktiot menevät komponentteihin propseina, tässä mallina ne menevät post propsilla.
 const mapDispatchToProps = (dispatch) => {
     return {
-        createPost: post => dispatch(newPost(post))
+        createPost: (post) => 
+        dispatch(newPost(post))
         }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewPost);
+// ekana meillä on null, koska emme sovella tähän mapStatetoProps
+// mapDispatchtoprops pitää aina olla tokana, koska state tulee aina ennen propsia.
+// siksi meidän pitää määritellä null, koska connect menee aina ekana state ja sitten props.
+export default connect(null, mapDispatchToProps)(NewPost);
