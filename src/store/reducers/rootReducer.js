@@ -1,4 +1,4 @@
-import { NEW_POST_SUCCESFUL, NEW_POST_ERROR } from '../actions/actionTypes';
+import { NEW_POST_SUCCESFUL, REMOVE_ALL_POSTS } from '../actions/actionTypes';
 
 
 // tää on vaan muuntuja, johon objekteja tallenetaan.
@@ -18,7 +18,7 @@ const rootReducer = (state = initialState, action) => {
             // state.posts, koska haluamme vain vaikuttaa siihen.
          return {...state, posts:[...state.posts, action.post]}  
         
-        case NEW_POST_ERROR:
+        case REMOVE_ALL_POSTS:
         return {...state, posts: []}
 
         default:

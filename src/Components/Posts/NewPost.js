@@ -91,8 +91,7 @@ handleNewMessage = event => {
 // 3 dispatch funktiot menevät komponentteihin propseina, tässä mallina ne menevät post propsilla.
 const mapDispatchToProps = (dispatch) => {
     return {
-        createPost: (post) => 
-        dispatch(newPost(post))
+        createPost: post => dispatch(newPost(post))
         }
 }
 
