@@ -7,15 +7,9 @@ import { newPost } from '../../store/actions/postActions';
 class NewPost extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
-
+        this.state = {};
         this.handleChange = this.handleChange.bind(this);
-        this.createNewPost = this.createNewPost.bind(this);
-    }
-
-    createNewPost(post) {
-        this.props.newPost(post);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = event => {
@@ -25,41 +19,29 @@ class NewPost extends Component {
             [event.target.id]: event.target.value
         });
     }
-    /*
-        handleNewMessage = event => {
-            event.preventDefault();
-            this.props.NewPost({
-                title: this.state.title,
-                message: this.state.message
-            })
-            
-                Firebase.firestore().collection('posts').add({
-                    title: this.state.title,
-                    message: this.state.message,
-                    time: new Date(),
-                    user: Firebase.auth().currentUser.uid
-                }).then(() => {
-                    this.setState({
-                        posted: true
-                    });
-                })
-           
-        
-        
-        }
-    */
+
+    handleSubmit = event => {
+        event.preventDefault();
+        this.props.newPost({
+            title: this.state.title,
+            message: this.state.message
+        })
+    }
+
+
+   
+  
     render() {
         return (
             <div className="row">
-                <form id="newpost" className="col s12" onSubmit={this.createNewPost}>
+                <form id="newpost" className="col s12" onSubmit={this.handleSubmit}>
                     <div className="input field col s6">
                         <label htmlFor="title">Title</label>
                         <input placeholder="title"
                             id="title"
                             type="text"
                             className="validate"
-                            value={this.state.title}
-                            onChange={e => this.setState({ title: e.target.value })}
+                            onChange={this.handleChange}
                         />
                     </div>
                     <div className="input field col s6">
@@ -67,8 +49,7 @@ class NewPost extends Component {
                             id="message"
                             type="text"
                             className="validate"
-                            value={this.state.message}
-                            onChange={e => this.setState({ message: e.target.value })}
+                            onChange={this.handleChange}
                         />
                         <label htmlFor="newpost">Make yourself Heard</label>
                     </div>
@@ -84,12 +65,13 @@ class NewPost extends Component {
 // pitää AINA palauttaa objekti.
 // reduxStatessa on meidän todos.
 // reduxState muutetaan propsiksi Reactissa.
-function mapStatetoProps(reduxState) {
+const mapDispatchToProps = dispatch => {
     return {
-        posts: reduxState.posts
-    };
+        newPost: post => dispatch(newPost(post))  
+    }
 }
 
+export default connect(null, mapDispatchToProps)( NewPost);
 // 1 miten actionit dispatchataan.
 // 2 payload on post: post - sitä käytetään luomaan uusi state.
 // 3 dispatch funktiot menevät komponentteihin propseina, tässä mallina ne menevät post propsilla.
@@ -98,6 +80,3 @@ function mapStatetoProps(reduxState) {
 // jos MapStatetoPropsia ei ole, pitää laittaa null.
 // mapDispatchtoprops pitää aina olla tokana, koska state tulee aina ennen propsia.
 // connect, state, props. Tässä järjestyksessä.
-export default connect(mapStatetoProps, { newPost })(
-    NewPost
-);

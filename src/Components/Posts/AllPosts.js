@@ -5,25 +5,6 @@ import { connect } from 'react-redux';
 // import Firebase from 'firebase';
 
 class AllPosts extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: null
-        };
-    }
-    /*
-        componentDidMount = () => {
-            Firebase.firestore().collection('posts').get()
-                .then(resp => {
-                    this.setState({
-                        posts: resp.docs
-                    })
-                })
-                .catch(err => {
-                    console.log(err.message);
-                });
-        }
-    */
     render() {
 
         return (
@@ -31,7 +12,7 @@ class AllPosts extends Component {
                 <button className="btn" onClick={this.props.removeAllPosts}>Remove all posts.</button>
                 {
                     // nää oli ekana state, mutta nyt reduxin myötä props.
-                    this.props.posts ?
+                    this.props.posts.length > 0 ?
                         this.props.posts.map(post =>
                             <PostSummary post={post} key={Math.random() * 99} />
                         ) :

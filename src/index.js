@@ -2,29 +2,40 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-// REACT-REDUX BABY.
+// REACT-REDUX BABY
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux';
 // import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 // import { createFirestoreInstance } from 'redux-firestore';
 import rootReducer from './store/reducers/rootReducer';
-import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
+import { createFirestoreInstance, getFirestore, reduxFirestore  } from 'redux-firestore' // new
+import { ReactReduxFirebaseProvider, getFirebase  } from 'react-redux-firebase' // new
+import firebase from 'firebase/app' // new
+import { FIREBASE_CONFIG as firebaseConfig } from './config/FirebaseConfig' // new
 
-function configureStore() {
-    const store = createStore(
+const store = createStore(
         rootReducer,
         compose(
-            applyMiddleware(thunk),
+            applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
+            reduxFirestore(firebase, firebaseConfig),
             window.devToolsExtension ? window.devToolsExtension() : f => f
         )
     );
-    return store;
-}
-
-const store = configureStore();
+    
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <ReactReduxFirebaseProvider
+        firebase={firebase}
+        config={firebaseConfig}
+        dispatch={store.dispatch}
+        createFirestoreInstance={createFirestoreInstance}
+        >
+         <React.StrictMode>
+              <App />
+            </React.StrictMode>
+        </ReactReduxFirebaseProvider>
     </Provider >,
-    document.getElementById('root'));
+    document.getElementById('root')
+    );

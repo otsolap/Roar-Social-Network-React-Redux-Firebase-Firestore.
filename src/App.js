@@ -12,7 +12,7 @@ import NewPost from './Components/Posts/NewPost';
 import PostDetails from './Components/Posts/PostDetails';
 // FIREBASE
 import Firebase from 'firebase';
-import { FIREBASE_CONFIG as firebaseConfig, reduxFirebase_config as reduxFirebase } from './config/FirebaseConfig';
+import { FIREBASE_CONFIG as firebaseConfig, } from './config/FirebaseConfig';
 
 // // Initialize Firebase
 Firebase.initializeApp(firebaseConfig)
