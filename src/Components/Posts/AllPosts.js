@@ -14,7 +14,7 @@ class AllPosts extends Component {
                     // nää oli ekana state, mutta nyt reduxin myötä props.
                     this.props.posts.length > 0 ?
                         this.props.posts.map(post =>
-                            <PostSummary post={post} key={Math.random() * 99} />
+                            <PostSummary post={post} key={Math.random()*99} />
                         ) :
                         'Loading.....'
                 }
