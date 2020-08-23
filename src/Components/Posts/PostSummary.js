@@ -10,10 +10,10 @@ class PostSummary extends Component {
                     <div className="card">
                         <div className="card-image">
                             <img src={placeholder} alt="placeholder" />
-                            <span className="card-title">{this.props.post.title}</span>
+                            <span className="card-title">{this.props.posts.title}</span>
                         </div>
                         <div className="card-content">
-                            <p>{this.props.post.message}</p>
+                            <p>{this.props.posts.message}</p>
                         </div>
                         <div className="card-action">
                             <a href="/post:id">Reply</a>

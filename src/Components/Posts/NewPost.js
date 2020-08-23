@@ -23,8 +23,8 @@ class NewPost extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.newPost({
-            title: this.state.Posttitle,
-            message: this.state.Postmessage
+            title: this.state.title,
+            message: this.state.message
         })
     }
 
@@ -38,7 +38,7 @@ class NewPost extends Component {
                     <div className="input field col s6">
                         <label htmlFor="title">Title</label>
                         <input placeholder="title"
-                            id="Posttitle"
+                            id="title"
                             type="text"
                             className="validate"
                             onChange={this.handleChange}
@@ -46,7 +46,7 @@ class NewPost extends Component {
                     </div>
                     <div className="input field col s6">
                         <textarea placeholder="Roar"
-                            id="Postmessage"
+                            id="message"
                             type="text"
                             className="validate"
                             onChange={this.handleChange}
@@ -67,7 +67,7 @@ class NewPost extends Component {
 // reduxState muutetaan propsiksi Reactissa.
 const mapDispatchToProps = dispatch => {
     return {
-        newPost: post => dispatch(newPost(post))
+        newPost: posts => dispatch(newPost(posts))
     }
 }
 
