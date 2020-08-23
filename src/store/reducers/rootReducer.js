@@ -1,7 +1,7 @@
 import { NEW_POST_SUCCESFUL, REMOVE_ALL_POSTS } from '../actions/postActions';
 // tää on vaan muuntuja, johon objekteja tallenetaan.
 const initialState = {
-    posts: []
+    posts: [],
 }
 
 

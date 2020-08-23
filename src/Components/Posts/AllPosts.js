@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 class AllPosts extends Component {
     render() {
-
         return (
             <div>
                 <button className="btn" onClick={this.props.removeAllPosts}>Remove all posts.</button>
@@ -32,7 +31,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        removeAllPosts: posts => dispatch(removeAllPosts(posts))
+        removeAllPosts: () => {
+            dispatch(removeAllPosts())
+        }
     }
 }
 

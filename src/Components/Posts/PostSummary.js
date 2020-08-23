@@ -3,6 +3,7 @@ import { placeholder } from '../../images/placeholder.jpg'
 
 class PostSummary extends Component {
     render() {
+        console.log(this.props)
         return (
             <div className="row">
                 <div className="col s12 m7">

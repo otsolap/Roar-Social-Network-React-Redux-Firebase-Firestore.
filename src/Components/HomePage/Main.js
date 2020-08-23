@@ -4,7 +4,7 @@ import AllPosts from '../Posts/AllPosts'
 
 const Main = () => (
     <div>
-        <AllPosts />
+        <AllPosts></AllPosts>
     </div>
 )
 

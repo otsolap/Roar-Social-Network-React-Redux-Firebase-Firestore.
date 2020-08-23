@@ -12,41 +12,41 @@ class NewPost extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange = event => {
+    handleChange = (e) => {
         this.setState({
             // Voit laittaa tyhjät statet, koska nää tekee ne.
             // mutta muistutuksena se on title ja message.
-            [event.target.id]: event.target.value
+            [e.target.id]: e.target.value
         });
     }
 
-    handleSubmit = event => {
+    handleSubmit = (event) => {
         event.preventDefault();
         this.props.newPost({
-            title: this.state.title,
-            message: this.state.message
+            title: this.state.Posttitle,
+            message: this.state.Postmessage
         })
     }
 
 
-   
-  
+
+
     render() {
         return (
             <div className="row">
-                <form id="newpost" className="col s12" onSubmit={this.handleSubmit}>
+                <form className="col s12" onSubmit={this.handleSubmit}>
                     <div className="input field col s6">
                         <label htmlFor="title">Title</label>
                         <input placeholder="title"
-                            id="title"
+                            id="Posttitle"
                             type="text"
                             className="validate"
                             onChange={this.handleChange}
                         />
                     </div>
                     <div className="input field col s6">
-                        <input placeholder="Roar"
-                            id="message"
+                        <textarea placeholder="Roar"
+                            id="Postmessage"
                             type="text"
                             className="validate"
                             onChange={this.handleChange}
@@ -67,11 +67,11 @@ class NewPost extends Component {
 // reduxState muutetaan propsiksi Reactissa.
 const mapDispatchToProps = dispatch => {
     return {
-        newPost: post => dispatch(newPost(post))  
+        newPost: post => dispatch(newPost(post))
     }
 }
 
-export default connect(null, mapDispatchToProps)( NewPost);
+export default connect(null, mapDispatchToProps)(NewPost);
 // 1 miten actionit dispatchataan.
 // 2 payload on post: post - sitä käytetään luomaan uusi state.
 // 3 dispatch funktiot menevät komponentteihin propseina, tässä mallina ne menevät post propsilla.
