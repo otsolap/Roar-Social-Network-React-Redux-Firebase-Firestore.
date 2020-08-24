@@ -67,7 +67,7 @@ class NewPost extends Component {
 // reduxState muutetaan propsiksi Reactissa.
 const mapDispatchToProps = dispatch => {
     return {
-        newPost: posts => dispatch(newPost(posts))
+        newPost: (post) => dispatch(newPost(post))
     }
 }
 

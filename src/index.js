@@ -13,14 +13,18 @@ import { Provider } from 'react-redux';
 // import { createFirestoreInstance } from 'redux-firestore';
 import rootReducer from './store/reducers/rootReducer';
 import thunk from 'redux-thunk'
-import { createFirestoreInstance, getFirestore, reduxFirestore } from 'redux-firestore' // new
-import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase' // new
-import firebase from 'firebase/app' // new
-import { FIREBASE_CONFIG as firebaseConfig } from './config/FirebaseConfig' // new
+import { createFirestoreInstance, getFirestore, reduxFirestore } from 'redux-firestore'
+// ReactReduxFireBaseProvider varmistaa että Firebasen datasta saadaan propseja.
+// Ja myös tekee siitä yhteentekevän Reduxin kanssa tietenkin.
+import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase'
+import firebase from 'firebase/app'
+import { FIREBASE_CONFIG as firebaseConfig } from './config/FirebaseConfig'
 
 const store = createStore(
     rootReducer,
     compose(
+        // withextraargument tallentaa objekteja, joita getfirestore ja getfirebase on
+        // eli nyt thunkkeihin voi littää firebasen ja firestoren.
         applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
         reduxFirestore(firebase, firebaseConfig),
         window.devToolsExtension ? window.devToolsExtension() : f => f
@@ -36,9 +40,7 @@ ReactDOM.render(
             dispatch={store.dispatch}
             createFirestoreInstance={createFirestoreInstance}
         >
-            <React.StrictMode>
-                <App />
-            </React.StrictMode>
+            <App />
         </ReactReduxFirebaseProvider>
     </Provider >,
     document.getElementById('root')
