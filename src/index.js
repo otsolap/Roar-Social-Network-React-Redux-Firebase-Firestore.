@@ -18,7 +18,10 @@ import { createFirestoreInstance, getFirestore, reduxFirestore } from 'redux-fir
 // Ja myös tekee siitä yhteentekevän Reduxin kanssa tietenkin.
 import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase'
 import firebase from 'firebase/app'
-import { FIREBASE_CONFIG as firebaseConfig } from './config/FirebaseConfig'
+import { FIREBASE_CONFIG as firebaseConfig, REDUX_FIRESTORE_CONFIG as reduxfirestoreconfig } from './config/FirebaseConfig'
+// näitä tarvittiin saadakseen isAuth toimivaan.
+import { isLoaded } from 'react-redux-firebase';
+import { useSelector } from 'react-redux'
 
 const store = createStore(
     rootReducer,
@@ -31,16 +34,27 @@ const store = createStore(
     )
 );
 
+// Auth päivittäminen.
+// huom, että nyt reactreduxfirebaseproviderissa on 2 config-tiedostoa
+// tämä on osa sitä.
+function AuthisLoaded({ children }) {
+    const auth = useSelector(state => state.firebase.auth)
+    if (!isLoaded(auth)) return <div><p>Loading....</p></div>
+    return children
+}
+
 
 ReactDOM.render(
     <Provider store={store}>
         <ReactReduxFirebaseProvider
             firebase={firebase}
             config={firebaseConfig}
+            config={reduxfirestoreconfig}
             dispatch={store.dispatch}
             createFirestoreInstance={createFirestoreInstance}
-        >
-            <App />
+        ><AuthisLoaded>
+                <App />
+            </AuthisLoaded>
         </ReactReduxFirebaseProvider>
     </Provider >,
     document.getElementById('root')

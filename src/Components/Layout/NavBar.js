@@ -10,9 +10,10 @@ import { connect } from 'react-redux';
 // koska auth.UID ei ehdi lataantua.
 import { isLoaded } from 'react-redux-firebase';
 
+
 const NavBar = (props) => {
-    const { auth } = props;
-    const links = auth.uid ? <UserLinks /> : <NonRegLinks />
+    const { auth, profile } = props;
+    const links = auth.uid ? <UserLinks profile={profile} /> : <NonRegLinks />
     return (
         <nav>
             <div className="nav-wrapper deep-orange accent-4">
@@ -27,7 +28,9 @@ const NavBar = (props) => {
 
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
+        profile: state.firebase.profile,
         auth: state.firebase.auth
     }
 }

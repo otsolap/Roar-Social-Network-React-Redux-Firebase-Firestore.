@@ -1,6 +1,7 @@
 import React from 'react'
 import { placeholder } from '../../images/placeholder.jpg'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 const PostSummary = ({ post }) => {
     return (
@@ -12,7 +13,9 @@ const PostSummary = ({ post }) => {
                         <span className="card-title">{post.title}</span>
                     </div>
                     <div className="card-content">
+                        <span>Posted by {post.authorUserName}</span>
                         <p>{post.message}</p>
+                        <span>{moment(post.createdAt.toDate()).calendar()}</span>
                     </div>
                     <div className="card-action">
                         <Link to={'/post/' + post.id} key={post.id}>Read text</Link>

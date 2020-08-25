@@ -28,6 +28,7 @@ class NewPost extends Component {
             title: this.state.title,
             message: this.state.message
         })
+        this.props.history.push('/');
     }
 
     render() {

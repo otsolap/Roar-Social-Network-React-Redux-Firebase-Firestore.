@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
-
+import moment from 'moment';
 
 
 const PostSummary = (props) => {
@@ -20,7 +20,9 @@ const PostSummary = (props) => {
                         </div>
                         <span className="card-title">{post.title}</span>
                         <div className="card-content">
+                            <p>by {post.authorUserName}</p>
                             <p>{post.message}</p>
+                            <span>{moment(post.createdAt.toDate()).calendar()}</span>
                         </div>
                         <div className="card-action">
                             This should take the user back.

@@ -9,11 +9,11 @@ import { signOut } from '../../store/actions/authActions';
 const UserLinks = (props) => {
     return (
         <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <li><NavLink to='/'> {props.profile.username} </NavLink></li>
             <li> <NavLink to="/newpost"><i className="small material-icons left">arrow_downward</i>New Post </NavLink > </li>
-            <li><NavLink
-                onClick={props.signOut}
-                to="/logout" >
+            <li><NavLink onClick={props.signOut} to="/logout" >
                 <i className="small material-icons left">arrow_downward</i>Logout</NavLink></li>
+
         </ul>
     )
 }
