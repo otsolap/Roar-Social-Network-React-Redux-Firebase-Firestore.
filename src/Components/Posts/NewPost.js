@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { newPost } from '../../store/actions/postActions';
 // import Firebase from 'firebase';
+import { Redirect } from 'react-router-dom';
+
 
 class NewPost extends Component {
     constructor(props) {
@@ -28,10 +30,9 @@ class NewPost extends Component {
         })
     }
 
-
-
-
     render() {
+        const { auth } = this.props;
+        if (!auth.uid) return <Redirect to='/login' />
         return (
             <div className="row">
                 <form className="col s12" onSubmit={this.handleSubmit}>
@@ -62,6 +63,13 @@ class NewPost extends Component {
     }
 };
 
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+
 // pitää AINA palauttaa objekti.
 // reduxStatessa on meidän todos.
 // reduxState muutetaan propsiksi Reactissa.
@@ -71,7 +79,7 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(NewPost);
+export default connect(mapStateToProps, mapDispatchToProps)(NewPost);
 // 1 miten actionit dispatchataan.
 // 2 payload on post: post - sitä käytetään luomaan uusi state.
 // 3 dispatch funktiot menevät komponentteihin propseina, tässä mallina ne menevät post propsilla.

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Firebase from 'firebase';
-
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
 
 class Register extends Component {
     firestore = Firebase.firestore(); // Firestore!
@@ -60,6 +61,8 @@ class Register extends Component {
     }
 
     render() {
+        const { auth } = this.props;
+        if (auth.uid) return <Redirect to='/' />
         return (
             <div className="herobanner">
                 <h1>MAKE SOCIAL MEDIA GREAT AGAIN</h1>
@@ -144,4 +147,11 @@ class Register extends Component {
     }
 };
 
-export default Register;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+
+export default connect(mapStateToProps)(Register)

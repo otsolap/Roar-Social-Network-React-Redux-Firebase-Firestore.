@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react'
 import AllPosts from '../Posts/AllPosts'
+class Main extends Component {
+    render() {
+        const { posts } = this.props;
+
+        return (
+            <div>
+                <AllPosts posts={posts} />
+            </div >
+        )
+    }
+}
 
 
-const Main = () => (
-    <div>
-        <AllPosts></AllPosts>
-    </div>
-)
 
-export default Main;
+export default (Main)
