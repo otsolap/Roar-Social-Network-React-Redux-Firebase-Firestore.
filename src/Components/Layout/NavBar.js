@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Logo from './Logo';
 import NonRegLinks from './NonRegLinks'
 import UserLinks from './UserLinks'
+import { connect } from 'react-redux';
 
 class NavBar extends Component {
 
@@ -20,5 +21,11 @@ class NavBar extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
 
-export default NavBar;
+    }
+}
+
+
+export default connect()(NavBar);

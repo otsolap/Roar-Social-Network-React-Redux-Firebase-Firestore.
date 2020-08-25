@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Firebase from 'firebase';
+import { connect } from 'react-redux'
+import { signIn } from '../../store/actions/authActions'
 
 
 class Login extends Component {
-
     // constructor luo uusia INSTANSSEJA loginnista, siksi käytämme thissiä.
     // THIS viittaa INSTANSSIIN, ei ITSE loginniin.
     // eli this muokkaa this.statea.... siksi siinä on se this.
@@ -31,18 +31,11 @@ class Login extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        Firebase.auth().signInWithEmailAndPassword(
-            this.state.email,
-            this.state.password
-        ).then(() => {
-
-            console.log('login success');
-        }).catch(err => {
-            console.log('login fail:' + err);
-        });
+        this.props.signIn(this.state)
     }
 
     render() {
+        const { authError } = this.props;
         return (
             <div className="herobanner">
                 <h1> MAKE SOCIAL MEDIA GREAT AGAIN </h1>
@@ -79,6 +72,9 @@ class Login extends Component {
                             Login
                                 </button>
                     </form >
+                    <div>
+                        {authError ? <p>{authError}</p> : null}
+                    </div>
                 </div >
                 <span>Don't have an account yet? <a href="/register">Register here! </a></span>
             </div >
@@ -86,4 +82,22 @@ class Login extends Component {
     }
 };
 
-export default Login;
+//state.auth tulee rootreducerista.
+// ja authError tulee authActions.
+// muista että se on authError, ei Autherror tai autherror.
+// kirjainkoolla väliä.
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authError
+    }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signIn: (auths) => dispatch(signIn(auths))
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

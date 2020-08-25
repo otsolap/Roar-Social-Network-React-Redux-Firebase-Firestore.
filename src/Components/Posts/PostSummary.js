@@ -1,5 +1,6 @@
 import React from 'react'
 import { placeholder } from '../../images/placeholder.jpg'
+import { Link } from 'react-router-dom'
 
 const PostSummary = ({ post }) => {
     return (
@@ -14,7 +15,7 @@ const PostSummary = ({ post }) => {
                         <p>{post.message}</p>
                     </div>
                     <div className="card-action">
-                        <a href="/post:id">Reply</a>
+                        <Link to={'/post/' + post.id} key={post.id}>Read text</Link>
                     </div>
                 </div>
             </div>

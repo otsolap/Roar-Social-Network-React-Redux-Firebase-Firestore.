@@ -3,7 +3,7 @@ import { placeholder } from '../../images/placeholder.jpg'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux';
-import { Link } from 'react-router-dom'
+
 
 
 const PostSummary = (props) => {
@@ -11,17 +11,17 @@ const PostSummary = (props) => {
     if (post) {
         return (
             <div className="row">
-                <div className="col s12 m7">
-                    <div className="card">
+                <div className="col s12 m6">
+                    <div className="card large">
                         <div className="card-image">
                             <img src={placeholder} alt="placeholder" />
-                            <span className="card-title">{post.title}</span>
                         </div>
+                        <span className="card-title">{post.title}</span>
                         <div className="card-content">
                             <p>{post.message}</p>
                         </div>
                         <div className="card-action">
-                            <Link to={'/post' + post.id}>Read text</Link>
+                            This should take the user back.
                         </div>
                     </div>
                 </div >
