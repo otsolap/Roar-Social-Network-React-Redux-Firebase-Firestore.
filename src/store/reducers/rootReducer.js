@@ -1,22 +1,19 @@
-import { NEW_POST_SUCCESFUL, REMOVE_ALL_POSTS } from '../actions/postActions';
-// tää on vaan muuntuja, johon objekteja tallenetaan.
-const initialState = {
-    posts: []
-}
+import postsReducer from './postsReducer';
+import authReducer from './authReducer';
+import { combineReducers } from 'redux';
+// firestoreReducer saadaam koodinrakenne async.
+// firestore ja state tekee yhteistyötä taustalla
+import { firestoreReducer } from 'redux-firestore';
+// synkkaa meidän reducerit firebasen kanssa.
+// näin me saadaan firebasen kanssa auth toimintaan, eli login/logout hoidetaan tällä.
+// firebasereducer hoitaa paljon asioita behind-the-scene
+import { firebaseReducer } from 'react-redux-firebase'
 
-
-const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case NEW_POST_SUCCESFUL:
-            // state.posts, koska haluamme vain vaikuttaa siihen.
-            return { ...state, posts: [...state.posts, action.post] }
-
-        case REMOVE_ALL_POSTS:
-            return { ...state, posts: [] }
-
-        default:
-            return state;
-    }
-}
+const rootReducer = combineReducers({
+    auth: authReducer,
+    posts: postsReducer,
+    firestore: firestoreReducer,
+    firebase: firebaseReducer
+});
 
 export default rootReducer;

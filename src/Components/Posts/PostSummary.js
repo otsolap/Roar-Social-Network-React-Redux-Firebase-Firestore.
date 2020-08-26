@@ -1,28 +1,29 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { placeholder } from '../../images/placeholder.jpg'
+import { Link } from 'react-router-dom'
+import moment from 'moment'
 
-class PostSummary extends Component {
-    render() {
-        return (
-            <div className="row">
-                <div className="col s12 m7">
-                    <div className="card">
-                        <div className="card-image">
-                            <img src={placeholder} alt="placeholder" />
-                            <span className="card-title">{this.props.post.title}</span>
-                        </div>
-                        <div className="card-content">
-                            <p>{this.props.post.message}</p>
-                        </div>
-                        <div className="card-action">
-                            <a href="/post:id">Reply</a>
-                        </div>
+const PostSummary = ({ post }) => {
+    return (
+        <div className="row">
+            <div className="col s12 m7">
+                <div className="card">
+                    <div className="card-image">
+                        <img src={placeholder} alt="placeholder" />
+                        <span className="card-title">{post.title}</span>
+                    </div>
+                    <div className="card-content">
+                        <span>Posted by {post.authorUserName}</span>
+                        <p>{post.message}</p>
+                        <span>{moment(post.createdAt.toDate()).calendar()}</span>
+                    </div>
+                    <div className="card-action">
+                        <Link to={'/post/' + post.id} key={post.id}>Read text</Link>
                     </div>
                 </div>
             </div>
-
-        )
-    }
+        </div>
+    )
 }
 
-export default PostSummary;
+export default PostSummary
