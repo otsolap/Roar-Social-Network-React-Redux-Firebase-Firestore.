@@ -11,23 +11,11 @@ class AllPosts extends Component {
 
         return (
             <div>
-<<<<<<< HEAD
-                <button className="btn" onClick={this.props.removeAllPosts}>Remove all posts.</button>
-                {
-                    // nää oli ekana state, mutta nyt reduxin myötä props.
-                    this.props.posts.length > 0 ?
-                        this.props.posts.map(post =>
-                            <PostSummary post={post} key={Math.random()*99} />
-                        ) :
-                        'Loading.....'
-                }
-=======
                 {posts && posts.map(post => {
                     return (
                         <PostSummary post={post} key={post.id} />
                     )
                 })}
->>>>>>> ee1f78b53ba87a9bc81196c8cc602512b977a43c
             </div>
         )
     }
