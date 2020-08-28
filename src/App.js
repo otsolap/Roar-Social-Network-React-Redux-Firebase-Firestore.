@@ -1,7 +1,6 @@
 // PERUSS REACT-ETTIÄ
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.css';
 // KOMPONENTIT
 import NavBar from './Components/Layout/NavBar';
 import Main from './Components/HomePage/Main';

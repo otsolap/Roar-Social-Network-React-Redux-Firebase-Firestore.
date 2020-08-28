@@ -24,6 +24,7 @@ class AllPosts extends Component {
 const mapStateToProps = (state) => {
     return {
         // tämä on meidän this, props ja staten muokkaaja. :-D
+        // se tarvitsee Firestorereducerin joka on Rootreducerissa.
         posts: state.firestore.ordered.posts
     }
 }
