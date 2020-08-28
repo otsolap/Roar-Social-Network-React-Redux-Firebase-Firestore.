@@ -9,6 +9,9 @@ class AllPosts extends Component {
     render() {
         const { posts } = this.props;
 
+        // mitä Posts && meinaa? Sitä, että se tarkistaa,
+        // onko koko postsia olemassa. Jos ei ole.
+        // Koodimme ei vaivaudu tekemään mappia laisinkaan.
         return (
             <div>
                 {posts && posts.map(post => {

@@ -8,7 +8,7 @@ admin.initializeApp(functions.config().firebase);
 // haluamme vain tämän funktion luoda notificaatiot ja thats it.
 // PostsCreated ja NewUser itse verkkoselain version.
 const createNotification = ((notification) => {
-    return admin.firestore().collection('notifcations')
+    return admin.firestore().collection('notifications')
         .add(notification)
         .then(doc => console.log('notification added', doc));
 });
