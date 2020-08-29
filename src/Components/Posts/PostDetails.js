@@ -13,31 +13,27 @@ const PostSummary = (props) => {
     if (!auth.uid) return <Redirect to='/login' />
     if (post) {
         return (
-            <div className="row">
-                <div className="col s12 m6">
-                    <div className="card large">
+            <div className="container section post-details">
+                <div className="card z-depth-0">
+                    <div className="card-content">
                         <div className="card-image">
                             <img src={placeholder} alt="placeholder" />
                         </div>
-                        <div className="card-content black-text">
-                            <span className="card-title">{post.title}</span>
-                            <p>by {post.authorUserName}</p>
-                            <p>{post.message}</p>
-                            <span>{moment(post.createdAt.toDate()).calendar()}</span>
-                            <div className="card-action">
-                                <Link to={'/'} >Back to Mainpage</Link>
-                            </div>
-                        </div>
+                        <span className="card-title">{post.title}</span>
+                        <p>by {post.authorUserName}</p>
+                        <p>{post.message}</p>
                     </div>
-                </div >
-            </div >
+                    <div className="card-action grey lighten-4 grey-text">
+                        <div><span>{moment(post.createdAt.toDate()).calendar()}</span></div>
+                        <div><Link to={'/'} >Back to Mainpage</Link></div>
+                    </div>
+                </div>
+            </div>
         )
     } else {
         return (
-            <div>
-                <p>
-                    Loading posts...
-            </p>
+            <div className="container center">
+                <p>Loading posts..</p>
             </div>
         )
     }

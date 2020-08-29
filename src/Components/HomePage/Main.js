@@ -11,13 +11,16 @@ class Main extends Component {
         const { posts, auth, notifications } = this.props;
         if (!auth.uid) return <Redirect to="/Login" />
 
+        // container = kaikki keskitetään, ei tarvii 0 auto marginia lol.
         return (
-            <div>
-                <div>
-                    <Notifications notifications={notifications} />
-                </div >
-                <div>
-                    <AllPosts posts={posts} />
+            <div className="container">
+                <div className="row">
+                    <div className="col s12 m6">
+                        <AllPosts posts={posts} />
+                    </div>
+                    <div className="col s12 m5 offset-m1">
+                        <Notifications notifications={notifications} />
+                    </div >
                 </div>
             </div>
         )

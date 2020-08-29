@@ -15,8 +15,10 @@ const NavBar = (props) => {
     const { auth, profile } = props;
     const links = auth.uid ? <UserLinks profile={profile} /> : <NonRegLinks />
     return (
-        <nav>
-            <div className="nav-wrapper deep-orange accent-4">
+        // wrapper = kokoscreen.
+        // container = keskittää kaikki yhteen kolumniin.
+        <nav className="nav-wrapper deep-orange accent-4">
+            <div className="container">
                 <Logo />
                 <ul className="right hide-on-med-and-down">
                     {isLoaded(auth) && links}

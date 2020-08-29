@@ -35,29 +35,32 @@ class NewPost extends Component {
         const { auth } = this.props;
         if (!auth.uid) return <Redirect to='/login' />
         return (
-            <div className="row">
-                <form className="col s12" onSubmit={this.handleSubmit}>
-                    <div className="input field col s6">
-                        <label htmlFor="title">Title</label>
+            <div className="container">
+                <form className="white" onSubmit={this.handleSubmit}>
+                    <h4 className="black-text text-darken-4">Make a Roar!</h4>
+                    <div className="input field">
                         <input placeholder="title"
                             id="title"
                             type="text"
                             className="validate"
                             onChange={this.handleChange}
                         />
+                        <label htmlFor="title">Roar Title</label>
                     </div>
-                    <div className="input field col s6">
+                    <div className="input field">
                         <textarea placeholder="Roar"
                             id="message"
-                            type="text"
+                            type="textarea"
                             className="validate"
                             onChange={this.handleChange}
                         />
                         <label htmlFor="newpost">Make yourself Heard</label>
                     </div>
-                    <button className="btn waves-effect waves-light" type="submit" name="action">
-                        Make a roar!
+                    <div className="input-field">
+                        <button className="btn waves-effect waves-light" type="submit" name="action">
+                            Make a roar!
                         </button>
+                    </div>
                 </form >
             </div >
         );

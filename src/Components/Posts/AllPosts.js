@@ -13,7 +13,7 @@ class AllPosts extends Component {
         // onko koko postsia olemassa. Jos ei ole.
         // Koodimme ei vaivaudu tekemään mappia laisinkaan.
         return (
-            <div>
+            <div className="all-posts section">
                 {posts && posts.map(post => {
                     return (
                         <PostSummary post={post} key={post.id} />
