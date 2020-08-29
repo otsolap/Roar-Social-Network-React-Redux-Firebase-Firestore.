@@ -1,5 +1,5 @@
 // PERUSS REACT-ETTIÄ
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // KOMPONENTIT
 import NavBar from './Components/Layout/NavBar';
@@ -12,31 +12,30 @@ import PostDetails from './Components/Posts/PostDetails';
 // FIREBASE
 import Firebase from 'firebase';
 import { FIREBASE_CONFIG as firebaseConfig, } from './config/FirebaseConfig';
-
 // // Initialize Firebase
 Firebase.initializeApp(firebaseConfig)
 Firebase.analytics();
 
 
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <NavBar />
-        <div className="container">
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <NavBar />
           <Switch>
-            <Route exact path="/" component={Main}></Route>
-            <Route path="/newpost" component={NewPost}></Route>
-            <Route path="/register" component={Register}></Route>
-            <Route path="/login" component={Login}></Route>
-            <Route path="/logout" component={Logout}></Route>
-            <Route path="/post/:id" component={PostDetails}></Route>
+            <Route exact path="/" component={Main} />
+            <Route path="/newpost" component={NewPost} />
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+            <Route path="/logout" component={Logout} />
+            <Route path="/post/:id" component={PostDetails} />
           </Switch>
         </div>
-      </div>
-    </Router>
-  );
+      </Router>
+    );
+  }
 }
 
 export default App;

@@ -38,6 +38,7 @@ class NewPost extends Component {
             <div className="container">
                 <form className="white" onSubmit={this.handleSubmit}>
                     <h4 className="black-text text-darken-4">Make a Roar!</h4>
+                    <label htmlFor="title">Roar Title</label>
                     <div className="input field">
                         <input placeholder="title"
                             id="title"
@@ -45,8 +46,8 @@ class NewPost extends Component {
                             className="validate"
                             onChange={this.handleChange}
                         />
-                        <label htmlFor="title">Roar Title</label>
                     </div>
+                    <label htmlFor="newpost">Make yourself Heard</label>
                     <div className="input field">
                         <textarea placeholder="Roar"
                             id="message"
@@ -54,7 +55,6 @@ class NewPost extends Component {
                             className="validate"
                             onChange={this.handleChange}
                         />
-                        <label htmlFor="newpost">Make yourself Heard</label>
                     </div>
                     <div className="input-field">
                         <button className="btn waves-effect waves-light" type="submit" name="action">

@@ -5,7 +5,7 @@ import moment from 'moment'
 
 const PostSummary = ({ post }) => {
     return (
-        <div className="card z-depth-0 post-summary">
+        <div className="card z-depth-0">
             <div className="card-content black-text text-darken-3">
                 <span className="card-title">{post.title}</span>
                 <div className="card-image">

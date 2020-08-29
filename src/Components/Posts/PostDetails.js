@@ -13,7 +13,7 @@ const PostSummary = (props) => {
     if (!auth.uid) return <Redirect to='/login' />
     if (post) {
         return (
-            <div className="container section post-details">
+            <div className="container section">
                 <div className="card z-depth-0">
                     <div className="card-content">
                         <div className="card-image">
@@ -23,7 +23,7 @@ const PostSummary = (props) => {
                         <p>by {post.authorUserName}</p>
                         <p>{post.message}</p>
                     </div>
-                    <div className="card-action grey lighten-4 grey-text">
+                    <div className="card-action black-text">
                         <div><span>{moment(post.createdAt.toDate()).calendar()}</span></div>
                         <div><Link to={'/'} >Back to Mainpage</Link></div>
                     </div>
