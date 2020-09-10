@@ -28,6 +28,7 @@ const store = createStore(
     compose(
         // withextraargument tallentaa objekteja, joita getfirestore ja getfirebase on
         // eli nyt thunkkeihin voi littää firebasen ja firestoren.
+        // applymiddleware on FUNKTIO, koska sen sisällä on thunk.
         applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
         reduxFirestore(firebase, firebaseConfig),
         window.devToolsExtension ? window.devToolsExtension() : f => f

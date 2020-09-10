@@ -10,6 +10,9 @@ import { firestoreReducer } from 'redux-firestore';
 import { firebaseReducer } from 'react-redux-firebase'
 
 const rootReducer = combineReducers({
+    // auth, posts, firestore ja firebase on rootReducerin PROPERTYJÄ
+    // jotka rootReducer PÄIVITTÄÄ.
+    // ja päivitys on....... Reducerin STATET.
     auth: authReducer,
     posts: postsReducer,
     firestore: firestoreReducer,

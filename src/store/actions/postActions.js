@@ -5,7 +5,7 @@ export const GET_ALL_POSTS = 'GET_ALL_POSTS'
 export const NEW_POST_SUCCESFUL = 'NEW_POST_SUCCESFUL';
 
 
-// tämä on async koodi.
+// tämä on async koodi ja funktio.
 export const newPost = (post) => {
     return (dispatch, getState, storeEnhancers) => {
         const profile = getState().firebase.profile;

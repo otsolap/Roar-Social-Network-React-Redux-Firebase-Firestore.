@@ -7,10 +7,18 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: 'Signika', sans-serif;
-	background: url('./images/background.jpg');
 	background-size: 100%;
 	background-color: #f4f4f4;
 	min-height: 100%;
+	line-height: 1.6rem;
+}
+
+h1 {
+	font-size: 3rem;
+}
+
+h2 {
+	font-size: 2.5rem;
 }
 
 .herobanner {
@@ -31,6 +39,10 @@ body {
 	background-size: cover;
 	color: #fff;
 	text-shadow: 0 0 8px #66757f;
+}
+
+.input-field > label {
+	color: #333;
 }
 
 form {

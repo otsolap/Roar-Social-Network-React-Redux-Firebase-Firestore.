@@ -12,6 +12,8 @@ class AllPosts extends Component {
         // mitä Posts && meinaa? Sitä, että se tarkistaa,
         // onko koko postsia olemassa. Jos ei ole.
         // Koodimme ei vaivaudu tekemään mappia laisinkaan.
+        // posts.map siis olettaa että postia on.
+        // mutta mitä jos serverissä ongelmia? Siksi varmistus tehdään ekana posts.
         return (
             <div className="all-posts section">
                 {posts && posts.map(post => {
@@ -27,6 +29,7 @@ class AllPosts extends Component {
 const mapStateToProps = (state) => {
     return {
         // tämä on meidän this, props ja staten muokkaaja. :-D
+        // ennen firestorea tää oli jtn posts: state.posts.posts
         // se tarvitsee Firestorereducerin joka on Rootreducerissa.
         posts: state.firestore.ordered.posts
     }
