@@ -20,7 +20,7 @@ const NavBar = (props) => {
         <nav className="nav-wrapper deep-orange accent-4">
             <div className="container">
                 <Logo />
-                <ul className="right hide-on-med-and-down">
+                <ul className="right">
                     {isLoaded(auth) && links}
                 </ul >
             </div >
